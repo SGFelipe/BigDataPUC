@@ -19,8 +19,10 @@ class Reducer(object):
     def reduce(self):
         for current, group in groupby(self, itemgetter(0)):
             try:
-                total = sum(int(count) for current, count in group)
-                self.emit(current, total)
+                linhas = []
+                for item in group:
+                    linhas.append(item[1])
+                self.emit(current, linhas)
             except ValueError:
                 pass
 
