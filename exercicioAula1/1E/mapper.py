@@ -16,9 +16,10 @@ class Mapper(object):
 
 	def map(self):
 		pair = []
+		
 		for row in self:
-			pair = [row[1], row[4]]
-			self.emit(pair, 1)
+			pair = [row[3], row[4]]
+			self.emit(row[1], pair)
 
 	def __iter__(self):
 		for row in csv.reader(self.infile):

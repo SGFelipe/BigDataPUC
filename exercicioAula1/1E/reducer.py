@@ -18,13 +18,12 @@ class Reducer(object):
 
 	def reduce(self):
 		for current, group in groupby(self, itemgetter(0)):
-			frequencia = []
-			soma=0
+			flights = []
+			
 			for item in group:
-				soma += item[1]
-				frequencia.append(soma)
+				flights.append(item[1])
 
-			self.emit(current, max(frequencia))
+			self.emit(current, max(set(flights), key = flights.count))
 
 	def __iter__(self):
 		for line in self.infile:
